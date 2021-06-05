@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2 import extras as psycopg2_extras
 
 
 def connect_db():
@@ -20,7 +21,20 @@ def close_db():
 
 # save post
 def savePost(title, content, pictureBlob):
-    pass
+
+    data = "not"
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    cur.execute('insert into "posts"."post"("title", "content", "picture_blob") values (%s,%s,%s);', (
+        title,
+        content,
+        data
+    ))
+    # print(cur.fetchone()[0])
+    # print("I am here")
+
+    cur.close()
+    connect_db().commit()
+    return True
 
 
 # fetch post data
