@@ -24,14 +24,13 @@ message FetchPostDetails{
   }
 }
 
-message FetchKPosts{
+message FetchKPostIds{
   message Request{
     int32 k = 1;
   }
   message Response{
-    repeated string title = 1;
-    repeated string content = 2;
-    repeated  bytes pictureBlob = 3;
+    repeated int32 id = 1;
+
   }
 }
 
@@ -39,5 +38,5 @@ message FetchKPosts{
 service PostService{
   rpc uploadPost(UploadPost.Request) returns (UploadPost.Response) {}
   rpc fetchPostDetails(FetchPostDetails.Request) returns (FetchPostDetails.Response) {}
-  rpc fetchPosts(FetchKPosts.Request) returns (FetchKPosts.Response){}
+  rpc fetchPosts(FetchKPostIds.Request) returns (FetchKPostIds.Response){}
 }

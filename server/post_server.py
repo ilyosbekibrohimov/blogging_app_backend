@@ -27,23 +27,20 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
         response.content = database.fetchSinglePost(request.post_id)["content"]
         response.pictureBlob = bytes(database.fetchSinglePost(request.post_id)["picture_blob"])
 
-
-
-
-
-
         response.success = True
 
         return response
 
-    def fetchNextKPosts(self, request, context):
-        response = posts_pb2.FetchKPosts.Response()
-        response.success = False
+    def fetchPosts(self, request, context):
+        list = []
+        response = posts_pb2.FetchKPostIds.Response()
+        rows= database.fetchAllPostIds(request.k)
 
-        response.title = database.fetchPostTitles(request.k)
-        response.content = database.fetchPostContents(request.k)
-        response.pictureBlob = database.fetchPostPictureBlobs(request.k)
-        response.success = True
+        for row in rows:
+            list.append(row["id"])
+
+        print(list)
+        response.id.extend(list)
         return response
 
 

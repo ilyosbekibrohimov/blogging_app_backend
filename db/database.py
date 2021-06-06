@@ -28,7 +28,6 @@ def savePost(title, content, pictureBlob):
     cur.execute('insert into "posts"."post"("title", "content", "picture_blob") values (%s,%s,%s);',
                 (title, content, pictureBlob))
     cur.close()
-
     return True
 
 
@@ -43,10 +42,13 @@ def fetchSinglePost(id):
     return row
 
 
-def fetchAllPosts(k):
+def fetchAllPostIds(k):
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
-    cur.execute('select  * from "posts"."post" limit %s;', k)
+    cur.execute('select * from "posts"."post" limit %s;', [k])
     rows = cur.fetchall()
     cur.close()
 
     return rows
+
+
+

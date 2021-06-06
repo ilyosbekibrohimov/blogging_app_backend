@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from . import posts_pb2 as posts__pb2
+from  . import posts_pb2 as posts__pb2
 
 
 class PostServiceStub(object):
@@ -27,8 +27,8 @@ class PostServiceStub(object):
                 )
         self.fetchPosts = channel.unary_unary(
                 '/PostService/fetchPosts',
-                request_serializer=posts__pb2.FetchKPosts.Request.SerializeToString,
-                response_deserializer=posts__pb2.FetchKPosts.Response.FromString,
+                request_serializer=posts__pb2.FetchKPostIds.Request.SerializeToString,
+                response_deserializer=posts__pb2.FetchKPostIds.Response.FromString,
                 )
 
 
@@ -69,8 +69,8 @@ def add_PostServiceServicer_to_server(servicer, server):
             ),
             'fetchPosts': grpc.unary_unary_rpc_method_handler(
                     servicer.fetchPosts,
-                    request_deserializer=posts__pb2.FetchKPosts.Request.FromString,
-                    response_serializer=posts__pb2.FetchKPosts.Response.SerializeToString,
+                    request_deserializer=posts__pb2.FetchKPostIds.Request.FromString,
+                    response_serializer=posts__pb2.FetchKPostIds.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,7 +129,7 @@ class PostService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/PostService/fetchPosts',
-            posts__pb2.FetchKPosts.Request.SerializeToString,
-            posts__pb2.FetchKPosts.Response.FromString,
+            posts__pb2.FetchKPostIds.Request.SerializeToString,
+            posts__pb2.FetchKPostIds.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
