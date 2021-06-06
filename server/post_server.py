@@ -16,7 +16,6 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
         response.success = False
         response.success = database.savePost(request.title, request.content, request.picture_blob)
 
-
         return response
 
     def fetchPostDetails(self, request, context):
@@ -37,17 +36,14 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
         response.content = database.fetchPostContents(request.k)
         response.pictureBlob = database.fetchPostPictureBlobs(request.k)
         response.success = True
-
         return response
 
 
 connect_db()
-
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
 posts_pb2_grpc.add_PostServiceServicer_to_server(PostServices(), server)
-print(
-    'Starting server. Listening on port 50051')
+print( 'Starting server. Listening on port 50051')
 server.add_insecure_port('[::]:50051')
 server.start()
 

@@ -3,12 +3,15 @@ from psycopg2 import extras as psycopg2_extras
 
 
 def connect_db():
+
     conn = psycopg2.connect(
         host="localhost",
         database="posts",
         user="postgres",
         password="asdilyos98*"
     )
+
+    conn.set_session(autocommit=True)
 
     print(conn)
     return conn
@@ -27,13 +30,13 @@ def savePost(title, content, pictureBlob):
     cur.execute('insert into "posts"."post"("title", "content", "picture_blob") values (%s,%s,%s);', (
         title,
         content,
-        data
+        pictureBlob
     ))
+    print(pictureBlob)
     # print(cur.fetchone()[0])
     # print("I am here")
 
     cur.close()
-    connect_db().commit()
     return True
 
 
