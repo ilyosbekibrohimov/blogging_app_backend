@@ -1,9 +1,9 @@
 import psycopg2
+import base64
 from psycopg2 import extras as psycopg2_extras
 
 
 def connect_db():
-
     conn = psycopg2.connect(
         host="localhost",
         database="posts",
@@ -24,45 +24,29 @@ def close_db():
 
 # save post
 def savePost(title, content, pictureBlob):
-
-    data = "not"
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
-    cur.execute('insert into "posts"."post"("title", "content", "picture_blob") values (%s,%s,%s);', (
-        title,
-        content,
-        pictureBlob
-    ))
-    print(pictureBlob)
-    # print(cur.fetchone()[0])
-    # print("I am here")
-
+    cur.execute('insert into "posts"."post"("title", "content", "picture_blob") values (%s,%s,%s);',
+                (title, content, pictureBlob))
     cur.close()
+
     return True
 
 
 # fetch post data
-def fetchPostTitle(id):
-    pass
+def fetchSinglePost(id):
+
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    cur.execute('select * from "posts"."post" where id = %s;',[id])
+    row = cur.fetchone()
+    cur.close()
+
+    return row
 
 
-def fetchPostContent(id):
-    pass
+def fetchAllPosts(k):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    cur.execute('select  * from "posts"."post" limit %s;', k)
+    rows = cur.fetchall()
+    cur.close()
 
-
-def fetchPostPictureBlob(id):
-    pass
-
-
-def fetchPostTitles(k):
-    for i in range(k + 1):
-        fetchPostTitle(i)
-
-
-def fetchPostContents(k):
-    for i in range(k + 1):
-        fetchPostContent(i)
-
-
-def fetchPostPictureBlobs(k):
-    for i in range(k + 1):
-        fetchPostPictureBlob(i)
+    return rows
