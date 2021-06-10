@@ -20,12 +20,14 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
         return response
 
     def fetchPostDetails(self, request, context):
-        list = []
         response = posts_pb2.FetchPostDetails.Response()
         response.success = False
         response.title = database.fetchSinglePost(request.post_id)["title"]
         response.content = database.fetchSinglePost(request.post_id)["content"]
         response.pictureBlob = bytes(database.fetchSinglePost(request.post_id)["picture_blob"])
+
+        print(response.title)
+        print(response.content)
 
         response.success = True
 
@@ -34,7 +36,7 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
     def fetchPosts(self, request, context):
         list = []
         response = posts_pb2.FetchKPostIds.Response()
-        rows= database.fetchAllPostIds(request.k)
+        rows = database.fetchAllPostIds(request.k)
 
         for row in rows:
             list.append(row["id"])

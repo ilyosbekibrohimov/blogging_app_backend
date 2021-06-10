@@ -1,20 +1,21 @@
 import psycopg2
-import base64
+import settings
 from psycopg2 import extras as psycopg2_extras
 
 
 def connect_db():
-    conn = psycopg2.connect(
-        host="localhost",
-        database="posts",
-        user="postgres",
-        password="asdilyos98*"
-    )
+    if settings.connect is None:
+        settings.connect = psycopg2.connect(
+            host="localhost",
+            database="posts",
+            user="postgres",
+            password="asdilyos98*"
+        )
 
-    conn.set_session(autocommit=True)
+    settings.connect.set_session(autocommit=True)
 
-    print(conn)
-    return conn
+    print(settings.connect)
+    return settings.connect
 
 
 def close_db():
@@ -47,6 +48,7 @@ def fetchAllPostIds(k):
     cur.execute('select * from "posts"."post" limit %s;', [k])
     rows = cur.fetchall()
     cur.close()
+
 
     return rows
 
