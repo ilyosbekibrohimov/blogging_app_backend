@@ -24,19 +24,25 @@ message FetchPostDetails{
   }
 }
 
-message FetchKPostIds{
+message FetchPostsByPage{
   message Request{
-    int32 k = 1;
+    int32 pageNumber = 1;
   }
+
   message Response{
     repeated int32 id = 1;
-
+    repeated string title = 2;
+    repeated string content = 3;
+    repeated bytes pictureBlob = 4;
+    bool success = 5;
   }
+
 }
+
 
 //rpcs
 service PostService{
   rpc uploadPost(UploadPost.Request) returns (UploadPost.Response) {}
   rpc fetchPostDetails(FetchPostDetails.Request) returns (FetchPostDetails.Response) {}
-  rpc fetchPosts(FetchKPostIds.Request) returns (FetchKPostIds.Response){}
+  rpc fetchPosts(FetchPostsByPage.Request) returns (FetchPostsByPage.Response){}
 }

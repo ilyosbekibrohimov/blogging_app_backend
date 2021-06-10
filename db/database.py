@@ -34,23 +34,19 @@ def savePost(title, content, pictureBlob):
 
 # fetch post data
 def fetchSinglePost(id):
-
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
-    cur.execute('select * from "posts"."post" where id = %s;',[id])
+    cur.execute('select * from "posts"."post" where id = %s;', [id])
     row = cur.fetchone()
     cur.close()
 
     return row
 
 
-def fetchAllPostIds(k):
+def fetchPostsByPage(pageNumber, rowsOfPage):
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
-    cur.execute('select * from "posts"."post" limit %s;', [k])
+    print(pageNumber)
+    cur.execute('select * from "posts"."post" offset %s rows fetch next %s rows only;', [(pageNumber-1)*rowsOfPage, rowsOfPage])
+
     rows = cur.fetchall()
     cur.close()
-
-
     return rows
-
-
-

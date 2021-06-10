@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0bposts.proto\"j\n\nUploadPost\x1a?\n\x07Request\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x14\n\x0cpicture_blob\x18\x03 \x01(\x0c\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x80\x01\n\x10\x46\x65tchPostDetails\x1a\x1a\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x1aP\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x01(\x0c\"=\n\rFetchKPostIds\x1a\x14\n\x07Request\x12\t\n\x01k\x18\x01 \x01(\x05\x1a\x16\n\x08Response\x12\n\n\x02id\x18\x01 \x03(\x05\x32\xd6\x01\n\x0bPostService\x12\x39\n\nuploadPost\x12\x13.UploadPost.Request\x1a\x14.UploadPost.Response\"\x00\x12K\n\x10\x66\x65tchPostDetails\x12\x19.FetchPostDetails.Request\x1a\x1a.FetchPostDetails.Response\"\x00\x12?\n\nfetchPosts\x12\x16.FetchKPostIds.Request\x1a\x17.FetchKPostIds.Response\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0bposts.proto\"j\n\nUploadPost\x1a?\n\x07Request\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x14\n\x0cpicture_blob\x18\x03 \x01(\x0c\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x80\x01\n\x10\x46\x65tchPostDetails\x1a\x1a\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x1aP\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x01(\x0c\"\x8f\x01\n\x10\x46\x65tchPostsByPage\x1a\x1d\n\x07Request\x12\x12\n\npageNumber\x18\x01 \x01(\x05\x1a\\\n\x08Response\x12\n\n\x02id\x18\x01 \x03(\x05\x12\r\n\x05title\x18\x02 \x03(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x03(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x03(\x0c\x12\x0f\n\x07success\x18\x05 \x01(\x08\x32\xdc\x01\n\x0bPostService\x12\x39\n\nuploadPost\x12\x13.UploadPost.Request\x1a\x14.UploadPost.Response\"\x00\x12K\n\x10\x66\x65tchPostDetails\x12\x19.FetchPostDetails.Request\x1a\x1a.FetchPostDetails.Response\"\x00\x12\x45\n\nfetchPosts\x12\x19.FetchPostsByPage.Request\x1a\x1a.FetchPostsByPage.Response\"\x00\x62\x06proto3'
 )
 
 
@@ -234,16 +234,16 @@ _FETCHPOSTDETAILS = _descriptor.Descriptor(
 )
 
 
-_FETCHKPOSTIDS_REQUEST = _descriptor.Descriptor(
+_FETCHPOSTSBYPAGE_REQUEST = _descriptor.Descriptor(
   name='Request',
-  full_name='FetchKPostIds.Request',
+  full_name='FetchPostsByPage.Request',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='k', full_name='FetchKPostIds.Request.k', index=0,
+      name='pageNumber', full_name='FetchPostsByPage.Request.pageNumber', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -261,22 +261,50 @@ _FETCHKPOSTIDS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=271,
-  serialized_end=291,
+  serialized_start=275,
+  serialized_end=304,
 )
 
-_FETCHKPOSTIDS_RESPONSE = _descriptor.Descriptor(
+_FETCHPOSTSBYPAGE_RESPONSE = _descriptor.Descriptor(
   name='Response',
-  full_name='FetchKPostIds.Response',
+  full_name='FetchPostsByPage.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='FetchKPostIds.Response.id', index=0,
+      name='id', full_name='FetchPostsByPage.Response.id', index=0,
       number=1, type=5, cpp_type=1, label=3,
       has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='title', full_name='FetchPostsByPage.Response.title', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='content', full_name='FetchPostsByPage.Response.content', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='pictureBlob', full_name='FetchPostsByPage.Response.pictureBlob', index=3,
+      number=4, type=12, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='success', full_name='FetchPostsByPage.Response.success', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -292,13 +320,13 @@ _FETCHKPOSTIDS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=293,
-  serialized_end=315,
+  serialized_start=306,
+  serialized_end=398,
 )
 
-_FETCHKPOSTIDS = _descriptor.Descriptor(
-  name='FetchKPostIds',
-  full_name='FetchKPostIds',
+_FETCHPOSTSBYPAGE = _descriptor.Descriptor(
+  name='FetchPostsByPage',
+  full_name='FetchPostsByPage',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -307,7 +335,7 @@ _FETCHKPOSTIDS = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_FETCHKPOSTIDS_REQUEST, _FETCHKPOSTIDS_RESPONSE, ],
+  nested_types=[_FETCHPOSTSBYPAGE_REQUEST, _FETCHPOSTSBYPAGE_RESPONSE, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -316,19 +344,19 @@ _FETCHKPOSTIDS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=254,
-  serialized_end=315,
+  serialized_start=255,
+  serialized_end=398,
 )
 
 _UPLOADPOST_REQUEST.containing_type = _UPLOADPOST
 _UPLOADPOST_RESPONSE.containing_type = _UPLOADPOST
 _FETCHPOSTDETAILS_REQUEST.containing_type = _FETCHPOSTDETAILS
 _FETCHPOSTDETAILS_RESPONSE.containing_type = _FETCHPOSTDETAILS
-_FETCHKPOSTIDS_REQUEST.containing_type = _FETCHKPOSTIDS
-_FETCHKPOSTIDS_RESPONSE.containing_type = _FETCHKPOSTIDS
+_FETCHPOSTSBYPAGE_REQUEST.containing_type = _FETCHPOSTSBYPAGE
+_FETCHPOSTSBYPAGE_RESPONSE.containing_type = _FETCHPOSTSBYPAGE
 DESCRIPTOR.message_types_by_name['UploadPost'] = _UPLOADPOST
 DESCRIPTOR.message_types_by_name['FetchPostDetails'] = _FETCHPOSTDETAILS
-DESCRIPTOR.message_types_by_name['FetchKPostIds'] = _FETCHKPOSTIDS
+DESCRIPTOR.message_types_by_name['FetchPostsByPage'] = _FETCHPOSTSBYPAGE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 UploadPost = _reflection.GeneratedProtocolMessageType('UploadPost', (_message.Message,), {
@@ -377,28 +405,28 @@ _sym_db.RegisterMessage(FetchPostDetails)
 _sym_db.RegisterMessage(FetchPostDetails.Request)
 _sym_db.RegisterMessage(FetchPostDetails.Response)
 
-FetchKPostIds = _reflection.GeneratedProtocolMessageType('FetchKPostIds', (_message.Message,), {
+FetchPostsByPage = _reflection.GeneratedProtocolMessageType('FetchPostsByPage', (_message.Message,), {
 
   'Request' : _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
-    'DESCRIPTOR' : _FETCHKPOSTIDS_REQUEST,
+    'DESCRIPTOR' : _FETCHPOSTSBYPAGE_REQUEST,
     '__module__' : 'posts_pb2'
-    # @@protoc_insertion_point(class_scope:FetchKPostIds.Request)
+    # @@protoc_insertion_point(class_scope:FetchPostsByPage.Request)
     })
   ,
 
   'Response' : _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), {
-    'DESCRIPTOR' : _FETCHKPOSTIDS_RESPONSE,
+    'DESCRIPTOR' : _FETCHPOSTSBYPAGE_RESPONSE,
     '__module__' : 'posts_pb2'
-    # @@protoc_insertion_point(class_scope:FetchKPostIds.Response)
+    # @@protoc_insertion_point(class_scope:FetchPostsByPage.Response)
     })
   ,
-  'DESCRIPTOR' : _FETCHKPOSTIDS,
+  'DESCRIPTOR' : _FETCHPOSTSBYPAGE,
   '__module__' : 'posts_pb2'
-  # @@protoc_insertion_point(class_scope:FetchKPostIds)
+  # @@protoc_insertion_point(class_scope:FetchPostsByPage)
   })
-_sym_db.RegisterMessage(FetchKPostIds)
-_sym_db.RegisterMessage(FetchKPostIds.Request)
-_sym_db.RegisterMessage(FetchKPostIds.Response)
+_sym_db.RegisterMessage(FetchPostsByPage)
+_sym_db.RegisterMessage(FetchPostsByPage.Request)
+_sym_db.RegisterMessage(FetchPostsByPage.Response)
 
 
 
@@ -409,8 +437,8 @@ _POSTSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=318,
-  serialized_end=532,
+  serialized_start=401,
+  serialized_end=621,
   methods=[
   _descriptor.MethodDescriptor(
     name='uploadPost',
@@ -437,8 +465,8 @@ _POSTSERVICE = _descriptor.ServiceDescriptor(
     full_name='PostService.fetchPosts',
     index=2,
     containing_service=None,
-    input_type=_FETCHKPOSTIDS_REQUEST,
-    output_type=_FETCHKPOSTIDS_RESPONSE,
+    input_type=_FETCHPOSTSBYPAGE_REQUEST,
+    output_type=_FETCHPOSTSBYPAGE_RESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

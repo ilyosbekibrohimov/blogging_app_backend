@@ -34,15 +34,17 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
         return response
 
     def fetchPosts(self, request, context):
-        list = []
-        response = posts_pb2.FetchKPostIds.Response()
-        rows = database.fetchAllPostIds(request.k)
+        response = posts_pb2.FetchPostsByPage.Response()
+        response.success = False
 
-        for row in rows:
-            list.append(row["id"])
+        for row in database.fetchPostsByPage(request.pageNumber, 5):
+            response.id.append(row["id"])
+            response.title.append(row["title"])
+            response.content.append(row["title"])
+            response.pictureBlob.append(bytes(row["picture_blob"]))
 
-        print(list)
-        response.id.extend(list)
+        response.success = True
+
         return response
 
 
