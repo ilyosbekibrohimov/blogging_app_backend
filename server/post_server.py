@@ -3,10 +3,10 @@ import grpc
 import time
 
 # import generated files
-from db.database import connect_db
+from tools.database import connect_db
 from generated_files import posts_pb2
 from generated_files import posts_pb2_grpc
-from db import database
+from tools import database
 
 
 class PostServices(posts_pb2_grpc.PostServiceServicer):
@@ -52,8 +52,8 @@ connect_db()
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
 posts_pb2_grpc.add_PostServiceServicer_to_server(PostServices(), server)
-print('Starting server. Listening on port 50051')
-server.add_insecure_port('[::]:50051')
+print('Starting server. Listening on port 50000')
+server.add_insecure_port('[::]:50000')
 server.start()
 
 try:
