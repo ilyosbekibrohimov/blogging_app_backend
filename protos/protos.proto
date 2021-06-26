@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+message AuthenticateUser {
+  enum AuthMethod {
+    GOOGLE = 0;
+    FACEBOOK = 1;
+    KAKAOTALK = 3;
+    PHONE = 4;
+  }
+  message Request{
+    AuthMethod method = 1;
+    string token = 2; // could be : auth token, phone number, etc.
+  }
+  message Response{
+    bool success = 1;
+    int32 userId = 2;
+    string sessionKey = 3;
+  }
+}
+
+
+message  UploadPost{
+  message Request{
+    string title = 1;
+    string content = 2;
+    bytes  picture_blob = 3;
+  }
+  message  Response {
+    bool success = 1;
+  }
+}
+
+message FetchPostDetails{
+  message Request{
+    int32 post_id = 1;
+  }
+  message Response{
+    bool  success = 1;
+    string title = 2;
+    string content = 3;
+    bytes pictureBlob = 4;
+  }
+}
+
+message FetchPostsByPage{
+  message Request{
+    int32 pageNumber = 1;
+  }
+
+  message Response{
+    repeated int32 id = 1;
+    repeated string title = 2;
+    repeated string content = 3;
+    repeated bytes pictureBlob = 4;
+    bool success = 5;
+  }
+
+}
+
+
+//rpcs
+service PostService{
+  rpc authenticateUser (AuthenticateUser.Request) returns (AuthenticateUser.Response) {}
+  rpc uploadPost(UploadPost.Request) returns (UploadPost.Response) {}
+  rpc fetchPostDetails(FetchPostDetails.Request) returns (FetchPostDetails.Response) {}
+  rpc fetchPosts(FetchPostsByPage.Request) returns (FetchPostsByPage.Response){}
+}
+
+/*
+gRPC HOWTO:
+Compile into python script:
+    python -m grpc_tools.protoc -I=[input directory] --python_out=[output directory] --grpc_python_out=[output directory] [file name].proto
+    python -m grpc_tools.protoc -I=./et_protos/ --python_out=./et_grpcs/ --grpc_python_out=./et_grpcs/ et_service.proto
+Compile into java source:
+    protoc --java_out=[output directory] --grpc_java_out=[output directory] [file name].proto
+Compile into dart / flutter:
+    protoc -I=[input directory] --dart_out=grpc:[output directory] [file name].proto
+Compile into swift:
+    protoc -I=[input directory] --swift_out=[output directory] --grpc-swift_out=[output directory] [file name].proto
+etc.
+*/

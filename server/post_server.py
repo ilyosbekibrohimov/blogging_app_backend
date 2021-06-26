@@ -4,15 +4,15 @@ import time
 
 # import generated files
 from db.database import connect_db
-from generated_files import posts_pb2
-from generated_files import posts_pb2_grpc
+from generated_files import protos_pb2
+from generated_files import protos_pb2_grpc
 from db import database
 
 
-class PostServices(posts_pb2_grpc.PostServiceServicer):
+class PostServices(protos_pb2_grpc.PostServiceServicer):
 
     def uploadPost(self, request, context):
-        response = posts_pb2.UploadPost.Response()
+        response = protos_pb2.UploadPost.Response()
         response.success = False
         print(request.picture_blob)
         response.success = database.savePost(request.title, request.content, request.picture_blob)
@@ -20,7 +20,7 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
         return response
 
     def fetchPostDetails(self, request, context):
-        response = posts_pb2.FetchPostDetails.Response()
+        response = protos_pb2.FetchPostDetails.Response()
         response.success = False
         response.title = database.fetchSinglePost(request.post_id)["title"]
         response.content = database.fetchSinglePost(request.post_id)["content"]
@@ -34,10 +34,10 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
         return response
 
     def fetchPosts(self, request, context):
-        response = posts_pb2.FetchPostsByPage.Response()
+        response = protos_pb2.FetchPostsByPage.Response()
         response.success = False
 
-        for row in database.fetchPostsByPage(request.pageNumber, 5):
+        for row in database.fetchPostsByPage(request.pageNumber, 10):
             response.id.append(row["id"])
             response.title.append(row["title"])
             response.content.append(row["title"])
@@ -47,11 +47,16 @@ class PostServices(posts_pb2_grpc.PostServiceServicer):
 
         return response
 
+    def authenticateUser(self, request, context):
+        response = protos_pb2.FetchPostsByPage.Response()
+        response.success = False
+
+
 
 connect_db()
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
-posts_pb2_grpc.add_PostServiceServicer_to_server(PostServices(), server)
+protos_pb2_grpc.add_PostServiceServicer_to_server(PostServices(), server)
 print('Starting server. Listening on port 50051')
 server.add_insecure_port('[::]:50051')
 server.start()

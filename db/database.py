@@ -44,9 +44,15 @@ def fetchSinglePost(id):
 
 def fetchPostsByPage(pageNumber, rowsOfPage):
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
-    print(pageNumber)
-    cur.execute('select * from "posts"."post" offset %s rows fetch next %s rows only;', [(pageNumber-1)*rowsOfPage, rowsOfPage])
+    print((pageNumber - 1) * rowsOfPage)
+
+    cur.execute('select * from "posts"."post" offset %s rows fetch next %s rows only;',
+                [(pageNumber - 1) * rowsOfPage, rowsOfPage])
 
     rows = cur.fetchall()
     cur.close()
     return rows
+
+
+def authenticateUser():
+    pass
