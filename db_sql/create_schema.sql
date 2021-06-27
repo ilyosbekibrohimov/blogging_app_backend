@@ -6,5 +6,15 @@ create table if not exists "posts"."post"
     "title"        varchar,
     "content"      varchar,
     "picture_blob" bytea
-)
+);
 
+create  table if not exists "posts"."users"
+
+(
+    "id"        serial primary key,
+    "id_token"  varchar default null,
+    "name"      varchar,
+    "email"     varchar unique,
+    "photo_url" varchar
+
+)

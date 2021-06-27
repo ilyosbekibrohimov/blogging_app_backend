@@ -24,7 +24,7 @@ def close_db():
 
 
 # save post
-def savePost(title, content, pictureBlob):
+def savePost(title, content, pictureBlob, id):
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
     cur.execute('insert into "posts"."post"("title", "content", "picture_blob") values (%s,%s,%s);',
                 (title, content, pictureBlob))
@@ -54,5 +54,20 @@ def fetchPostsByPage(pageNumber, rowsOfPage):
     return rows
 
 
-def authenticateUser():
-    pass
+def signIn(name, email, photo_url):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+
+    cur.execute('select * from "posts"."users" where email  = %s;', [email])
+    row = cur.fetchone()
+    if row is not None:
+
+        cur.close()
+        return row
+    else:
+
+        cur.execute('insert into "posts"."users"("id_token", "name", "email", "photo_url") values (%s,%s,%s, %s);',
+                (name, email, photo_url))
+        cur.execute('select * from "posts"."users" where email  = %s;', [email])
+        row = cur.fetchone()
+        cur.close()
+        return row

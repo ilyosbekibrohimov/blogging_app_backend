@@ -1,29 +1,22 @@
 syntax = "proto3";
 
 message AuthenticateUser {
-  enum AuthMethod {
-    GOOGLE = 0;
-    FACEBOOK = 1;
-    KAKAOTALK = 3;
-    PHONE = 4;
-  }
+
   message Request{
-    AuthMethod method = 1;
-    string token = 2; // could be : auth token, phone number, etc.
+    string id_token = 1; // could be : auth token, phone number, etc.
   }
   message Response{
     bool success = 1;
     int32 userId = 2;
-    string sessionKey = 3;
   }
 }
-
 
 message  UploadPost{
   message Request{
     string title = 1;
     string content = 2;
     bytes  picture_blob = 3;
+    string id = 4;
   }
   message  Response {
     bool success = 1;
