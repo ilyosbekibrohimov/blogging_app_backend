@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from . import posts_pb2 as posts__pb2
+from  generated_files import protos_pb2 as protos__pb2
 
 
 class PostServiceStub(object):
@@ -15,26 +15,47 @@ class PostServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.authenticateUser = channel.unary_unary(
+                '/PostService/authenticateUser',
+                request_serializer=protos__pb2.AuthenticateUser.Request.SerializeToString,
+                response_deserializer=protos__pb2.AuthenticateUser.Response.FromString,
+                )
         self.uploadPost = channel.unary_unary(
                 '/PostService/uploadPost',
-                request_serializer=posts__pb2.UploadPost.Request.SerializeToString,
-                response_deserializer=posts__pb2.UploadPost.Response.FromString,
+                request_serializer=protos__pb2.UploadPost.Request.SerializeToString,
+                response_deserializer=protos__pb2.UploadPost.Response.FromString,
                 )
         self.fetchPostDetails = channel.unary_unary(
                 '/PostService/fetchPostDetails',
-                request_serializer=posts__pb2.FetchPostDetails.Request.SerializeToString,
-                response_deserializer=posts__pb2.FetchPostDetails.Response.FromString,
+                request_serializer=protos__pb2.FetchPostDetails.Request.SerializeToString,
+                response_deserializer=protos__pb2.FetchPostDetails.Response.FromString,
                 )
         self.fetchPosts = channel.unary_unary(
                 '/PostService/fetchPosts',
-                request_serializer=posts__pb2.FetchPostsByPage.Request.SerializeToString,
-                response_deserializer=posts__pb2.FetchPostsByPage.Response.FromString,
+                request_serializer=protos__pb2.FetchPostsByPage.Request.SerializeToString,
+                response_deserializer=protos__pb2.FetchPostsByPage.Response.FromString,
+                )
+        self.createComment = channel.unary_unary(
+                '/PostService/createComment',
+                request_serializer=protos__pb2.CreateComment.Request.SerializeToString,
+                response_deserializer=protos__pb2.CreateComment.Response.FromString,
+                )
+        self.fetchComments = channel.unary_unary(
+                '/PostService/fetchComments',
+                request_serializer=protos__pb2.FetchCommentsByPost.Request.SerializeToString,
+                response_deserializer=protos__pb2.FetchCommentsByPost.Response.FromString,
                 )
 
 
 class PostServiceServicer(object):
     """rpcs
     """
+
+    def authenticateUser(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def uploadPost(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -54,23 +75,50 @@ class PostServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def createComment(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def fetchComments(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_PostServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'authenticateUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.authenticateUser,
+                    request_deserializer=protos__pb2.AuthenticateUser.Request.FromString,
+                    response_serializer=protos__pb2.AuthenticateUser.Response.SerializeToString,
+            ),
             'uploadPost': grpc.unary_unary_rpc_method_handler(
                     servicer.uploadPost,
-                    request_deserializer=posts__pb2.UploadPost.Request.FromString,
-                    response_serializer=posts__pb2.UploadPost.Response.SerializeToString,
+                    request_deserializer=protos__pb2.UploadPost.Request.FromString,
+                    response_serializer=protos__pb2.UploadPost.Response.SerializeToString,
             ),
             'fetchPostDetails': grpc.unary_unary_rpc_method_handler(
                     servicer.fetchPostDetails,
-                    request_deserializer=posts__pb2.FetchPostDetails.Request.FromString,
-                    response_serializer=posts__pb2.FetchPostDetails.Response.SerializeToString,
+                    request_deserializer=protos__pb2.FetchPostDetails.Request.FromString,
+                    response_serializer=protos__pb2.FetchPostDetails.Response.SerializeToString,
             ),
             'fetchPosts': grpc.unary_unary_rpc_method_handler(
                     servicer.fetchPosts,
-                    request_deserializer=posts__pb2.FetchPostsByPage.Request.FromString,
-                    response_serializer=posts__pb2.FetchPostsByPage.Response.SerializeToString,
+                    request_deserializer=protos__pb2.FetchPostsByPage.Request.FromString,
+                    response_serializer=protos__pb2.FetchPostsByPage.Response.SerializeToString,
+            ),
+            'createComment': grpc.unary_unary_rpc_method_handler(
+                    servicer.createComment,
+                    request_deserializer=protos__pb2.CreateComment.Request.FromString,
+                    response_serializer=protos__pb2.CreateComment.Response.SerializeToString,
+            ),
+            'fetchComments': grpc.unary_unary_rpc_method_handler(
+                    servicer.fetchComments,
+                    request_deserializer=protos__pb2.FetchCommentsByPost.Request.FromString,
+                    response_serializer=protos__pb2.FetchCommentsByPost.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -84,6 +132,23 @@ class PostService(object):
     """
 
     @staticmethod
+    def authenticateUser(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PostService/authenticateUser',
+            protos__pb2.AuthenticateUser.Request.SerializeToString,
+            protos__pb2.AuthenticateUser.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def uploadPost(request,
             target,
             options=(),
@@ -95,8 +160,8 @@ class PostService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/PostService/uploadPost',
-            posts__pb2.UploadPost.Request.SerializeToString,
-            posts__pb2.UploadPost.Response.FromString,
+            protos__pb2.UploadPost.Request.SerializeToString,
+            protos__pb2.UploadPost.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -112,8 +177,8 @@ class PostService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/PostService/fetchPostDetails',
-            posts__pb2.FetchPostDetails.Request.SerializeToString,
-            posts__pb2.FetchPostDetails.Response.FromString,
+            protos__pb2.FetchPostDetails.Request.SerializeToString,
+            protos__pb2.FetchPostDetails.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -129,7 +194,41 @@ class PostService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/PostService/fetchPosts',
-            posts__pb2.FetchPostsByPage.Request.SerializeToString,
-            posts__pb2.FetchPostsByPage.Response.FromString,
+            protos__pb2.FetchPostsByPage.Request.SerializeToString,
+            protos__pb2.FetchPostsByPage.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def createComment(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PostService/createComment',
+            protos__pb2.CreateComment.Request.SerializeToString,
+            protos__pb2.CreateComment.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def fetchComments(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PostService/fetchComments',
+            protos__pb2.FetchCommentsByPost.Request.SerializeToString,
+            protos__pb2.FetchCommentsByPost.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

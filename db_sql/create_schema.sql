@@ -8,7 +8,7 @@ create table if not exists "posts"."post"
     "picture_blob" bytea
 );
 
-create  table if not exists "posts"."users"
+create table if not exists "posts"."users"
 
 (
     "id"        serial primary key,
@@ -17,4 +17,12 @@ create  table if not exists "posts"."users"
     "email"     varchar unique,
     "photo_url" varchar
 
+);
+
+create table if not exists "posts"."comments"
+(
+    "id" serial primary key,
+    "user_id" integer references "posts"."users"(id),
+    "post_id" integer references "posts"."post"(id),
+    "content" varchar
 )

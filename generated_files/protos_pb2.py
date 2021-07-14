@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0cprotos.proto\"\\\n\x10\x41uthenticateUser\x1a\x1b\n\x07Request\x12\x10\n\x08id_token\x18\x01 \x01(\t\x1a+\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0e\n\x06userId\x18\x02 \x01(\x05\"v\n\nUploadPost\x1aK\n\x07Request\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x14\n\x0cpicture_blob\x18\x03 \x01(\x0c\x12\n\n\x02id\x18\x04 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x80\x01\n\x10\x46\x65tchPostDetails\x1a\x1a\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x1aP\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x01(\x0c\"\x8f\x01\n\x10\x46\x65tchPostsByPage\x1a\x1d\n\x07Request\x12\x12\n\npageNumber\x18\x01 \x01(\x05\x1a\\\n\x08Response\x12\n\n\x02id\x18\x01 \x03(\x05\x12\r\n\x05title\x18\x02 \x03(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x03(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x03(\x0c\x12\x0f\n\x07success\x18\x05 \x01(\x08\x32\xa9\x02\n\x0bPostService\x12K\n\x10\x61uthenticateUser\x12\x19.AuthenticateUser.Request\x1a\x1a.AuthenticateUser.Response\"\x00\x12\x39\n\nuploadPost\x12\x13.UploadPost.Request\x1a\x14.UploadPost.Response\"\x00\x12K\n\x10\x66\x65tchPostDetails\x12\x19.FetchPostDetails.Request\x1a\x1a.FetchPostDetails.Response\"\x00\x12\x45\n\nfetchPosts\x12\x19.FetchPostsByPage.Request\x1a\x1a.FetchPostsByPage.Response\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0cprotos.proto\"\\\n\x10\x41uthenticateUser\x1a\x1b\n\x07Request\x12\x10\n\x08id_token\x18\x01 \x01(\t\x1a+\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0e\n\x06userId\x18\x02 \x01(\x05\"v\n\nUploadPost\x1aK\n\x07Request\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x14\n\x0cpicture_blob\x18\x03 \x01(\x0c\x12\n\n\x02id\x18\x04 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x80\x01\n\x10\x46\x65tchPostDetails\x1a\x1a\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x1aP\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x01(\x0c\"\x8f\x01\n\x10\x46\x65tchPostsByPage\x1a\x1d\n\x07Request\x12\x12\n\npageNumber\x18\x01 \x01(\x05\x1a\\\n\x08Response\x12\n\n\x02id\x18\x01 \x03(\x05\x12\r\n\x05title\x18\x02 \x03(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x03(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x03(\x0c\x12\x0f\n\x07success\x18\x05 \x01(\x08\"\x87\x01\n\x13\x46\x65tchCommentsByPost\x1a\x1a\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x1aT\n\x08Response\x12\x0f\n\x07\x63ontent\x18\x01 \x03(\t\x12\x14\n\x0cuserPhotoUrl\x18\x02 \x03(\t\x12\x10\n\x08userName\x18\x03 \x03(\t\x12\x0f\n\x07success\x18\x04 \x01(\x08\"v\n\rCreateComment\x1aH\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07post_id\x18\x02 \x01(\x05\x12\x0f\n\x07user_id\x18\x03 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xbd\x03\n\x0bPostService\x12K\n\x10\x61uthenticateUser\x12\x19.AuthenticateUser.Request\x1a\x1a.AuthenticateUser.Response\"\x00\x12\x39\n\nuploadPost\x12\x13.UploadPost.Request\x1a\x14.UploadPost.Response\"\x00\x12K\n\x10\x66\x65tchPostDetails\x12\x19.FetchPostDetails.Request\x1a\x1a.FetchPostDetails.Response\"\x00\x12\x45\n\nfetchPosts\x12\x19.FetchPostsByPage.Request\x1a\x1a.FetchPostsByPage.Response\"\x00\x12\x42\n\rcreateComment\x12\x16.CreateComment.Request\x1a\x17.CreateComment.Response\"\x00\x12N\n\rfetchComments\x12\x1c.FetchCommentsByPost.Request\x1a\x1d.FetchCommentsByPost.Response\"\x00\x62\x06proto3'
 )
 
 
@@ -449,6 +449,222 @@ _FETCHPOSTSBYPAGE = _descriptor.Descriptor(
   serialized_end=505,
 )
 
+
+_FETCHCOMMENTSBYPOST_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='FetchCommentsByPost.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='post_id', full_name='FetchCommentsByPost.Request.post_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=251,
+  serialized_end=277,
+)
+
+_FETCHCOMMENTSBYPOST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='FetchCommentsByPost.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='content', full_name='FetchCommentsByPost.Response.content', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='userPhotoUrl', full_name='FetchCommentsByPost.Response.userPhotoUrl', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='userName', full_name='FetchCommentsByPost.Response.userName', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='success', full_name='FetchCommentsByPost.Response.success', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=559,
+  serialized_end=643,
+)
+
+_FETCHCOMMENTSBYPOST = _descriptor.Descriptor(
+  name='FetchCommentsByPost',
+  full_name='FetchCommentsByPost',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_FETCHCOMMENTSBYPOST_REQUEST, _FETCHCOMMENTSBYPOST_RESPONSE, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=508,
+  serialized_end=643,
+)
+
+
+_CREATECOMMENT_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='CreateComment.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='CreateComment.Request.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='post_id', full_name='CreateComment.Request.post_id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='CreateComment.Request.user_id', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='content', full_name='CreateComment.Request.content', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=662,
+  serialized_end=734,
+)
+
+_CREATECOMMENT_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='CreateComment.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='success', full_name='CreateComment.Response.success', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=65,
+  serialized_end=92,
+)
+
+_CREATECOMMENT = _descriptor.Descriptor(
+  name='CreateComment',
+  full_name='CreateComment',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_CREATECOMMENT_REQUEST, _CREATECOMMENT_RESPONSE, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=645,
+  serialized_end=763,
+)
+
 _AUTHENTICATEUSER_REQUEST.containing_type = _AUTHENTICATEUSER
 _AUTHENTICATEUSER_RESPONSE.containing_type = _AUTHENTICATEUSER
 _UPLOADPOST_REQUEST.containing_type = _UPLOADPOST
@@ -457,10 +673,16 @@ _FETCHPOSTDETAILS_REQUEST.containing_type = _FETCHPOSTDETAILS
 _FETCHPOSTDETAILS_RESPONSE.containing_type = _FETCHPOSTDETAILS
 _FETCHPOSTSBYPAGE_REQUEST.containing_type = _FETCHPOSTSBYPAGE
 _FETCHPOSTSBYPAGE_RESPONSE.containing_type = _FETCHPOSTSBYPAGE
+_FETCHCOMMENTSBYPOST_REQUEST.containing_type = _FETCHCOMMENTSBYPOST
+_FETCHCOMMENTSBYPOST_RESPONSE.containing_type = _FETCHCOMMENTSBYPOST
+_CREATECOMMENT_REQUEST.containing_type = _CREATECOMMENT
+_CREATECOMMENT_RESPONSE.containing_type = _CREATECOMMENT
 DESCRIPTOR.message_types_by_name['AuthenticateUser'] = _AUTHENTICATEUSER
 DESCRIPTOR.message_types_by_name['UploadPost'] = _UPLOADPOST
 DESCRIPTOR.message_types_by_name['FetchPostDetails'] = _FETCHPOSTDETAILS
 DESCRIPTOR.message_types_by_name['FetchPostsByPage'] = _FETCHPOSTSBYPAGE
+DESCRIPTOR.message_types_by_name['FetchCommentsByPost'] = _FETCHCOMMENTSBYPOST
+DESCRIPTOR.message_types_by_name['CreateComment'] = _CREATECOMMENT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 AuthenticateUser = _reflection.GeneratedProtocolMessageType('AuthenticateUser', (_message.Message,), {
@@ -555,6 +777,52 @@ _sym_db.RegisterMessage(FetchPostsByPage)
 _sym_db.RegisterMessage(FetchPostsByPage.Request)
 _sym_db.RegisterMessage(FetchPostsByPage.Response)
 
+FetchCommentsByPost = _reflection.GeneratedProtocolMessageType('FetchCommentsByPost', (_message.Message,), {
+
+  'Request' : _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
+    'DESCRIPTOR' : _FETCHCOMMENTSBYPOST_REQUEST,
+    '__module__' : 'protos_pb2'
+    # @@protoc_insertion_point(class_scope:FetchCommentsByPost.Request)
+    })
+  ,
+
+  'Response' : _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), {
+    'DESCRIPTOR' : _FETCHCOMMENTSBYPOST_RESPONSE,
+    '__module__' : 'protos_pb2'
+    # @@protoc_insertion_point(class_scope:FetchCommentsByPost.Response)
+    })
+  ,
+  'DESCRIPTOR' : _FETCHCOMMENTSBYPOST,
+  '__module__' : 'protos_pb2'
+  # @@protoc_insertion_point(class_scope:FetchCommentsByPost)
+  })
+_sym_db.RegisterMessage(FetchCommentsByPost)
+_sym_db.RegisterMessage(FetchCommentsByPost.Request)
+_sym_db.RegisterMessage(FetchCommentsByPost.Response)
+
+CreateComment = _reflection.GeneratedProtocolMessageType('CreateComment', (_message.Message,), {
+
+  'Request' : _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
+    'DESCRIPTOR' : _CREATECOMMENT_REQUEST,
+    '__module__' : 'protos_pb2'
+    # @@protoc_insertion_point(class_scope:CreateComment.Request)
+    })
+  ,
+
+  'Response' : _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), {
+    'DESCRIPTOR' : _CREATECOMMENT_RESPONSE,
+    '__module__' : 'protos_pb2'
+    # @@protoc_insertion_point(class_scope:CreateComment.Response)
+    })
+  ,
+  'DESCRIPTOR' : _CREATECOMMENT,
+  '__module__' : 'protos_pb2'
+  # @@protoc_insertion_point(class_scope:CreateComment)
+  })
+_sym_db.RegisterMessage(CreateComment)
+_sym_db.RegisterMessage(CreateComment.Request)
+_sym_db.RegisterMessage(CreateComment.Response)
+
 
 
 _POSTSERVICE = _descriptor.ServiceDescriptor(
@@ -564,8 +832,8 @@ _POSTSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=508,
-  serialized_end=805,
+  serialized_start=766,
+  serialized_end=1211,
   methods=[
   _descriptor.MethodDescriptor(
     name='authenticateUser',
@@ -604,6 +872,26 @@ _POSTSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_FETCHPOSTSBYPAGE_REQUEST,
     output_type=_FETCHPOSTSBYPAGE_RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='createComment',
+    full_name='PostService.createComment',
+    index=4,
+    containing_service=None,
+    input_type=_CREATECOMMENT_REQUEST,
+    output_type=_CREATECOMMENT_RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='fetchComments',
+    full_name='PostService.fetchComments',
+    index=5,
+    containing_service=None,
+    input_type=_FETCHCOMMENTSBYPOST_REQUEST,
+    output_type=_FETCHCOMMENTSBYPOST_RESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

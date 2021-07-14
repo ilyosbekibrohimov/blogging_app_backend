@@ -55,19 +55,63 @@ def fetchPostsByPage(pageNumber, rowsOfPage):
 
 
 def signIn(name, email, photo_url):
+
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
 
+    print("1")
     cur.execute('select * from "posts"."users" where email  = %s;', [email])
     row = cur.fetchone()
     if row is not None:
+        print("2")
 
         cur.close()
         return row
     else:
+        print("3")
 
-        cur.execute('insert into "posts"."users"("id_token", "name", "email", "photo_url") values (%s,%s,%s, %s);',
-                (name, email, photo_url))
+        cur.execute('insert into "posts"."users"("name", "email", "photo_url") values (%s,%s,%s);',
+                    (name, email, photo_url))
         cur.execute('select * from "posts"."users" where email  = %s;', [email])
         row = cur.fetchone()
         cur.close()
         return row
+
+
+def createComment(user_id, post_id, content):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    try:
+        cur.execute('insert into "posts"."comments"("user_id", "post_id", "content") values (%s,%s,%s);',
+                    (user_id, post_id, content))
+        cur.close()
+
+        return True
+    except Exception as e:
+        cur.close()
+        print("An exception occurred: ", e)
+        return False
+
+
+def fetchComments(post_id):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    try:
+        cur.execute('select * from "posts"."comments"  where post_id = %s;', [post_id])
+        rows = cur.fetchall()
+        cur.close()
+        return rows
+    except Exception as e:
+        cur.close()
+        print("An  exception happened ", e)
+        return None
+
+
+def getUserById(userId):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    try:
+        cur.execute('select * from  "posts"."users" where id = %s', [userId])
+        row = cur.fetchone()
+        cur.close()
+        return row
+    except Exception as e:
+        cur.close()
+        print("An  exeception happened ", e)
+        return None
