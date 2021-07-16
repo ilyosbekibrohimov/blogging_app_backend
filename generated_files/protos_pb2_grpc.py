@@ -55,6 +55,11 @@ class PostServiceStub(object):
                 request_serializer=protos__pb2.UnlikePost.Request.SerializeToString,
                 response_deserializer=protos__pb2.UnlikePost.Response.FromString,
                 )
+        self.editPost = channel.unary_unary(
+                '/PostService/editPost',
+                request_serializer=protos__pb2.EditPost.Request.SerializeToString,
+                response_deserializer=protos__pb2.EditPost.Response.FromString,
+                )
 
 
 class PostServiceServicer(object):
@@ -109,6 +114,12 @@ class PostServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def editPost(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_PostServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -151,6 +162,11 @@ def add_PostServiceServicer_to_server(servicer, server):
                     servicer.unlikePost,
                     request_deserializer=protos__pb2.UnlikePost.Request.FromString,
                     response_serializer=protos__pb2.UnlikePost.Response.SerializeToString,
+            ),
+            'editPost': grpc.unary_unary_rpc_method_handler(
+                    servicer.editPost,
+                    request_deserializer=protos__pb2.EditPost.Request.FromString,
+                    response_serializer=protos__pb2.EditPost.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -296,5 +312,22 @@ class PostService(object):
         return grpc.experimental.unary_unary(request, target, '/PostService/unlikePost',
             protos__pb2.UnlikePost.Request.SerializeToString,
             protos__pb2.UnlikePost.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def editPost(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PostService/editPost',
+            protos__pb2.EditPost.Request.SerializeToString,
+            protos__pb2.EditPost.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

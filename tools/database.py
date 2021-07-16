@@ -153,6 +153,7 @@ def unlikePost(userId, postId, timestamp):
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
     try:
         cur.execute('delete from  "posts"."likes" where "post_id" = %s and  "user_id" = %s;', [postId, userId])
+        decrement(postId)
         cur.close()
         return True
     except Exception as e:
@@ -161,7 +162,7 @@ def unlikePost(userId, postId, timestamp):
         return False
 
 
-def  incrementLikes(postId):
+def incrementLikes(postId):
     try:
         cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
         cur.execute('select * from "posts"."post"  where "id" = %s;', [postId])
@@ -174,6 +175,37 @@ def  incrementLikes(postId):
 
         cur.execute('update "posts"."post" set "number_likes" = %s where  "id" = %s', [likes + 1, postId])
         cur.close()
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+
+def decrement(postId):
+    try:
+        cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+        cur.execute('select * from "posts"."post"  where "id" = %s;', [postId])
+        row = cur.fetchone()
+        if row["number_likes"] is None:
+            likes = 0
+        else:
+            print(row["number_likes"])
+            likes = int(row["number_likes"])
+        if likes > 0:
+            cur.execute('update "posts"."post" set "number_likes" = %s where  "id" = %s', [likes - 1, postId])
+        cur.close()
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+
+def editPost(userId, postId, newTitile, newContent, newPictureBlob):
+    try:
+        cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+
+        cur.execute('update "posts"."post" set "title" = %s, "content" = %s, "picture_blob" = %s where  "id" = %s and'
+                    '"user_id" = %s', [newTitile, newContent, newPictureBlob, postId, userId])
         return True
     except Exception as e:
         print(e)

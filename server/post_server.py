@@ -29,10 +29,11 @@ class PostServices(protos_pb2_grpc.PostServiceServicer):
         response.title = database.fetchSinglePost(request.post_id)["title"]
         response.content = database.fetchSinglePost(request.post_id)["content"]
         response.pictureBlob = bytes(database.fetchSinglePost(request.post_id)["picture_blob"])
-        userId = database.fetchSinglePost(request.post_id)["user_id"]
-        response.creator_name = database.getUserById(userId)["name"]
-        response.creator_photoUrl = database.getUserById(userId)["photo_url"]
+        response.user_id = database.fetchSinglePost(request.post_id)["user_id"]
+        response.creator_name = database.getUserById(response.user_id )["name"]
+        response.creator_photoUrl = database.getUserById(response.user_id )["photo_url"]
         response.numberOfLikes = database.fetchSinglePost(request.post_id)["number_likes"]
+
         response.isLiked = database.isPostLikedByMe(request.post_id, request.user_id)
 
         print("post is liked", response.isLiked)
@@ -110,6 +111,14 @@ class PostServices(protos_pb2_grpc.PostServiceServicer):
         response = protos_pb2.UnlikePost.Response()
         response.success = False
         response.success = database.unlikePost(request.user_id, request.post_id, request.timestamp)
+        return response
+
+    def editPost(self, request, context):
+        response = protos_pb2.EditPost.Response()
+        response.success = False
+        response.success = database.editPost(request.user_id, request.post_id, request.title, request.content,
+                                             request.pictureBlob)
+
         return response
 
 

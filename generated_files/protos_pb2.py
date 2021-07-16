@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0cprotos.proto\"\\\n\x10\x41uthenticateUser\x1a\x1b\n\x07Request\x12\x10\n\x08id_token\x18\x01 \x01(\t\x1a+\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0e\n\x06userId\x18\x02 \x01(\x05\"\x9a\x01\n\nUploadPost\x1ao\n\x07Request\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x14\n\x0cpicture_blob\x18\x03 \x01(\x0c\x12\n\n\x02id\x18\x04 \x01(\t\x12\x0f\n\x07user_id\x18\x05 \x01(\t\x12\x11\n\ttimestamp\x18\x06 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\xea\x01\n\x10\x46\x65tchPostDetails\x1a+\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x1a\xa8\x01\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x01(\x0c\x12\x14\n\x0c\x63reator_name\x18\x05 \x01(\t\x12\x18\n\x10\x63reator_photoUrl\x18\x06 \x01(\t\x12\x15\n\rnumberOfLikes\x18\x07 \x01(\x05\x12\x0f\n\x07isLiked\x18\x08 \x01(\x08\"\xc3\x01\n\x10\x46\x65tchPostsByPage\x1a\x1d\n\x07Request\x12\x12\n\npageNumber\x18\x01 \x01(\x05\x1a\x8f\x01\n\x08Response\x12\n\n\x02id\x18\x01 \x03(\x05\x12\r\n\x05title\x18\x02 \x03(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x03(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x03(\x0c\x12\x15\n\rcreator_names\x18\x05 \x03(\t\x12\x1a\n\x12\x63reators_photo_url\x18\x06 \x03(\t\x12\x0f\n\x07success\x18\x07 \x01(\x08\"\x87\x01\n\x13\x46\x65tchCommentsByPost\x1a\x1a\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x1aT\n\x08Response\x12\x0f\n\x07\x63ontent\x18\x01 \x03(\t\x12\x14\n\x0cuserPhotoUrl\x18\x02 \x03(\t\x12\x10\n\x08userName\x18\x03 \x03(\t\x12\x0f\n\x07success\x18\x04 \x01(\x08\"v\n\rCreateComment\x1aH\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07post_id\x18\x02 \x01(\x05\x12\x0f\n\x07user_id\x18\x03 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"g\n\x08LikePost\x1a>\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"i\n\nUnlikePost\x1a>\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xad\x04\n\x0bPostService\x12K\n\x10\x61uthenticateUser\x12\x19.AuthenticateUser.Request\x1a\x1a.AuthenticateUser.Response\"\x00\x12\x39\n\nuploadPost\x12\x13.UploadPost.Request\x1a\x14.UploadPost.Response\"\x00\x12K\n\x10\x66\x65tchPostDetails\x12\x19.FetchPostDetails.Request\x1a\x1a.FetchPostDetails.Response\"\x00\x12\x45\n\nfetchPosts\x12\x19.FetchPostsByPage.Request\x1a\x1a.FetchPostsByPage.Response\"\x00\x12\x42\n\rcreateComment\x12\x16.CreateComment.Request\x1a\x17.CreateComment.Response\"\x00\x12N\n\rfetchComments\x12\x1c.FetchCommentsByPost.Request\x1a\x1d.FetchCommentsByPost.Response\"\x00\x12\x33\n\x08likePost\x12\x11.LikePost.Request\x1a\x12.LikePost.Response\"\x00\x12\x39\n\nunlikePost\x12\x13.UnlikePost.Request\x1a\x14.UnlikePost.Response\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0cprotos.proto\"\\\n\x10\x41uthenticateUser\x1a\x1b\n\x07Request\x12\x10\n\x08id_token\x18\x01 \x01(\t\x1a+\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0e\n\x06userId\x18\x02 \x01(\x05\"\x9a\x01\n\nUploadPost\x1ao\n\x07Request\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x14\n\x0cpicture_blob\x18\x03 \x01(\x0c\x12\n\n\x02id\x18\x04 \x01(\t\x12\x0f\n\x07user_id\x18\x05 \x01(\t\x12\x11\n\ttimestamp\x18\x06 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\xfb\x01\n\x10\x46\x65tchPostDetails\x1a+\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x1a\xb9\x01\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x01(\x0c\x12\x14\n\x0c\x63reator_name\x18\x05 \x01(\t\x12\x18\n\x10\x63reator_photoUrl\x18\x06 \x01(\t\x12\x15\n\rnumberOfLikes\x18\x07 \x01(\x05\x12\x0f\n\x07user_id\x18\x08 \x01(\x05\x12\x0f\n\x07isLiked\x18\t \x01(\x08\"\xc3\x01\n\x10\x46\x65tchPostsByPage\x1a\x1d\n\x07Request\x12\x12\n\npageNumber\x18\x01 \x01(\x05\x1a\x8f\x01\n\x08Response\x12\n\n\x02id\x18\x01 \x03(\x05\x12\r\n\x05title\x18\x02 \x03(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x03(\t\x12\x13\n\x0bpictureBlob\x18\x04 \x03(\x0c\x12\x15\n\rcreator_names\x18\x05 \x03(\t\x12\x1a\n\x12\x63reators_photo_url\x18\x06 \x03(\t\x12\x0f\n\x07success\x18\x07 \x01(\x08\"\x87\x01\n\x13\x46\x65tchCommentsByPost\x1a\x1a\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x1aT\n\x08Response\x12\x0f\n\x07\x63ontent\x18\x01 \x03(\t\x12\x14\n\x0cuserPhotoUrl\x18\x02 \x03(\t\x12\x10\n\x08userName\x18\x03 \x03(\t\x12\x0f\n\x07success\x18\x04 \x01(\x08\"v\n\rCreateComment\x1aH\n\x07Request\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07post_id\x18\x02 \x01(\x05\x12\x0f\n\x07user_id\x18\x03 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"g\n\x08LikePost\x1a>\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"i\n\nUnlikePost\x1a>\n\x07Request\x12\x0f\n\x07post_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x89\x01\n\x08\x45\x64itPost\x1a`\n\x07Request\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0f\n\x07post_id\x18\x02 \x01(\x05\x12\r\n\x05title\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x12\x13\n\x0bpictureBlob\x18\x05 \x01(\x0c\x1a\x1b\n\x08Response\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xe2\x04\n\x0bPostService\x12K\n\x10\x61uthenticateUser\x12\x19.AuthenticateUser.Request\x1a\x1a.AuthenticateUser.Response\"\x00\x12\x39\n\nuploadPost\x12\x13.UploadPost.Request\x1a\x14.UploadPost.Response\"\x00\x12K\n\x10\x66\x65tchPostDetails\x12\x19.FetchPostDetails.Request\x1a\x1a.FetchPostDetails.Response\"\x00\x12\x45\n\nfetchPosts\x12\x19.FetchPostsByPage.Request\x1a\x1a.FetchPostsByPage.Response\"\x00\x12\x42\n\rcreateComment\x12\x16.CreateComment.Request\x1a\x17.CreateComment.Response\"\x00\x12N\n\rfetchComments\x12\x1c.FetchCommentsByPost.Request\x1a\x1d.FetchCommentsByPost.Response\"\x00\x12\x33\n\x08likePost\x12\x11.LikePost.Request\x1a\x12.LikePost.Response\"\x00\x12\x39\n\nunlikePost\x12\x13.UnlikePost.Request\x1a\x14.UnlikePost.Response\"\x00\x12\x33\n\x08\x65\x64itPost\x12\x11.EditPost.Request\x1a\x12.EditPost.Response\"\x00\x62\x06proto3'
 )
 
 
@@ -337,8 +337,15 @@ _FETCHPOSTDETAILS_RESPONSE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='isLiked', full_name='FetchPostDetails.Response.isLiked', index=7,
-      number=8, type=8, cpp_type=7, label=1,
+      name='user_id', full_name='FetchPostDetails.Response.user_id', index=7,
+      number=8, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='isLiked', full_name='FetchPostDetails.Response.isLiked', index=8,
+      number=9, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -356,7 +363,7 @@ _FETCHPOSTDETAILS_RESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=334,
-  serialized_end=502,
+  serialized_end=519,
 )
 
 _FETCHPOSTDETAILS = _descriptor.Descriptor(
@@ -380,7 +387,7 @@ _FETCHPOSTDETAILS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=268,
-  serialized_end=502,
+  serialized_end=519,
 )
 
 
@@ -411,8 +418,8 @@ _FETCHPOSTSBYPAGE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=525,
-  serialized_end=554,
+  serialized_start=542,
+  serialized_end=571,
 )
 
 _FETCHPOSTSBYPAGE_RESPONSE = _descriptor.Descriptor(
@@ -484,8 +491,8 @@ _FETCHPOSTSBYPAGE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=557,
-  serialized_end=700,
+  serialized_start=574,
+  serialized_end=717,
 )
 
 _FETCHPOSTSBYPAGE = _descriptor.Descriptor(
@@ -508,8 +515,8 @@ _FETCHPOSTSBYPAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=505,
-  serialized_end=700,
+  serialized_start=522,
+  serialized_end=717,
 )
 
 
@@ -592,8 +599,8 @@ _FETCHCOMMENTSBYPOST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=754,
-  serialized_end=838,
+  serialized_start=771,
+  serialized_end=855,
 )
 
 _FETCHCOMMENTSBYPOST = _descriptor.Descriptor(
@@ -616,8 +623,8 @@ _FETCHCOMMENTSBYPOST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=703,
-  serialized_end=838,
+  serialized_start=720,
+  serialized_end=855,
 )
 
 
@@ -669,8 +676,8 @@ _CREATECOMMENT_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=857,
-  serialized_end=929,
+  serialized_start=874,
+  serialized_end=946,
 )
 
 _CREATECOMMENT_RESPONSE = _descriptor.Descriptor(
@@ -724,8 +731,8 @@ _CREATECOMMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=840,
-  serialized_end=958,
+  serialized_start=857,
+  serialized_end=975,
 )
 
 
@@ -770,8 +777,8 @@ _LIKEPOST_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=972,
-  serialized_end=1034,
+  serialized_start=989,
+  serialized_end=1051,
 )
 
 _LIKEPOST_RESPONSE = _descriptor.Descriptor(
@@ -825,8 +832,8 @@ _LIKEPOST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=960,
-  serialized_end=1063,
+  serialized_start=977,
+  serialized_end=1080,
 )
 
 
@@ -871,8 +878,8 @@ _UNLIKEPOST_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=972,
-  serialized_end=1034,
+  serialized_start=989,
+  serialized_end=1051,
 )
 
 _UNLIKEPOST_RESPONSE = _descriptor.Descriptor(
@@ -926,8 +933,123 @@ _UNLIKEPOST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1065,
-  serialized_end=1170,
+  serialized_start=1082,
+  serialized_end=1187,
+)
+
+
+_EDITPOST_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='EditPost.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='EditPost.Request.user_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='post_id', full_name='EditPost.Request.post_id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='title', full_name='EditPost.Request.title', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='content', full_name='EditPost.Request.content', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='pictureBlob', full_name='EditPost.Request.pictureBlob', index=4,
+      number=5, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1202,
+  serialized_end=1298,
+)
+
+_EDITPOST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='EditPost.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='success', full_name='EditPost.Response.success', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=65,
+  serialized_end=92,
+)
+
+_EDITPOST = _descriptor.Descriptor(
+  name='EditPost',
+  full_name='EditPost',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_EDITPOST_REQUEST, _EDITPOST_RESPONSE, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1190,
+  serialized_end=1327,
 )
 
 _AUTHENTICATEUSER_REQUEST.containing_type = _AUTHENTICATEUSER
@@ -946,6 +1068,8 @@ _LIKEPOST_REQUEST.containing_type = _LIKEPOST
 _LIKEPOST_RESPONSE.containing_type = _LIKEPOST
 _UNLIKEPOST_REQUEST.containing_type = _UNLIKEPOST
 _UNLIKEPOST_RESPONSE.containing_type = _UNLIKEPOST
+_EDITPOST_REQUEST.containing_type = _EDITPOST
+_EDITPOST_RESPONSE.containing_type = _EDITPOST
 DESCRIPTOR.message_types_by_name['AuthenticateUser'] = _AUTHENTICATEUSER
 DESCRIPTOR.message_types_by_name['UploadPost'] = _UPLOADPOST
 DESCRIPTOR.message_types_by_name['FetchPostDetails'] = _FETCHPOSTDETAILS
@@ -954,6 +1078,7 @@ DESCRIPTOR.message_types_by_name['FetchCommentsByPost'] = _FETCHCOMMENTSBYPOST
 DESCRIPTOR.message_types_by_name['CreateComment'] = _CREATECOMMENT
 DESCRIPTOR.message_types_by_name['LikePost'] = _LIKEPOST
 DESCRIPTOR.message_types_by_name['UnlikePost'] = _UNLIKEPOST
+DESCRIPTOR.message_types_by_name['EditPost'] = _EDITPOST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 AuthenticateUser = _reflection.GeneratedProtocolMessageType('AuthenticateUser', (_message.Message,), {
@@ -1140,6 +1265,29 @@ _sym_db.RegisterMessage(UnlikePost)
 _sym_db.RegisterMessage(UnlikePost.Request)
 _sym_db.RegisterMessage(UnlikePost.Response)
 
+EditPost = _reflection.GeneratedProtocolMessageType('EditPost', (_message.Message,), {
+
+  'Request' : _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), {
+    'DESCRIPTOR' : _EDITPOST_REQUEST,
+    '__module__' : 'protos_pb2'
+    # @@protoc_insertion_point(class_scope:EditPost.Request)
+    })
+  ,
+
+  'Response' : _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), {
+    'DESCRIPTOR' : _EDITPOST_RESPONSE,
+    '__module__' : 'protos_pb2'
+    # @@protoc_insertion_point(class_scope:EditPost.Response)
+    })
+  ,
+  'DESCRIPTOR' : _EDITPOST,
+  '__module__' : 'protos_pb2'
+  # @@protoc_insertion_point(class_scope:EditPost)
+  })
+_sym_db.RegisterMessage(EditPost)
+_sym_db.RegisterMessage(EditPost.Request)
+_sym_db.RegisterMessage(EditPost.Response)
+
 
 
 _POSTSERVICE = _descriptor.ServiceDescriptor(
@@ -1149,8 +1297,8 @@ _POSTSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1173,
-  serialized_end=1730,
+  serialized_start=1330,
+  serialized_end=1940,
   methods=[
   _descriptor.MethodDescriptor(
     name='authenticateUser',
@@ -1229,6 +1377,16 @@ _POSTSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_UNLIKEPOST_REQUEST,
     output_type=_UNLIKEPOST_RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='editPost',
+    full_name='PostService.editPost',
+    index=8,
+    containing_service=None,
+    input_type=_EDITPOST_REQUEST,
+    output_type=_EDITPOST_RESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
