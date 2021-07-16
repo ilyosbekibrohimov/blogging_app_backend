@@ -23,16 +23,15 @@ def close_db():
         connect_db().close()
 
 
-# save post
-def savePost(title, content, pictureBlob, id):
+def savePost(title, content, pictureBlob, id, timestamp):
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
-    cur.execute('insert into "posts"."post"("title", "content", "picture_blob") values (%s,%s,%s);',
-                (title, content, pictureBlob))
+    cur.execute('insert into "posts"."post"("title", "content", "picture_blob", "user_id", "timestamp") values (%s,'
+                '%s,%s, %s, %s);',
+                (title, content, pictureBlob, id, timestamp))
     cur.close()
     return True
 
 
-# fetch post data
 def fetchSinglePost(id):
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
     cur.execute('select * from "posts"."post" where id = %s;', [id])
@@ -40,6 +39,23 @@ def fetchSinglePost(id):
     cur.close()
 
     return row
+
+
+def isPostLikedByMe(postId, userId):
+    try:
+        cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+
+        if userId != -1:
+            cur.execute('select * from  "posts"."likes"  where user_id = %s  and post_id = %s;', [userId, postId])
+            if cur.rowcount == 0:
+                return False
+            else:
+                return True
+        else:
+            return False
+    except Exception as e:
+        print(e)
+        return False
 
 
 def fetchPostsByPage(pageNumber, rowsOfPage):
@@ -55,7 +71,6 @@ def fetchPostsByPage(pageNumber, rowsOfPage):
 
 
 def signIn(name, email, photo_url):
-
     cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
 
     print("1")
@@ -113,5 +128,53 @@ def getUserById(userId):
         return row
     except Exception as e:
         cur.close()
-        print("An  exeception happened ", e)
+        print("An exception happened ", e)
         return None
+
+
+def likePost(userId, postId, timestamp):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    try:
+        cur.execute('insert into "posts"."likes"("user_id", "post_id", "timestamp") values (%s,'
+                    '%s,%s);',
+                    (userId, postId, timestamp))
+
+        incrementLikes(postId)
+        cur.close()
+        return True
+
+    except Exception as e:
+        print(e)
+        cur.close()
+        return False
+
+
+def unlikePost(userId, postId, timestamp):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+    try:
+        cur.execute('delete from  "posts"."likes" where "post_id" = %s and  "user_id" = %s;', [postId, userId])
+        cur.close()
+        return True
+    except Exception as e:
+        print(e)
+        cur.close()
+        return False
+
+
+def  incrementLikes(postId):
+    try:
+        cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+        cur.execute('select * from "posts"."post"  where "id" = %s;', [postId])
+        row = cur.fetchone()
+        if row["number_likes"] is None:
+            likes = 0
+        else:
+            print(row["number_likes"])
+            likes = int(row["number_likes"])
+
+        cur.execute('update "posts"."post" set "number_likes" = %s where  "id" = %s', [likes + 1, postId])
+        cur.close()
+        return True
+    except Exception as e:
+        print(e)
+        return False

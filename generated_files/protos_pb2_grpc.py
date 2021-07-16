@@ -45,6 +45,16 @@ class PostServiceStub(object):
                 request_serializer=protos__pb2.FetchCommentsByPost.Request.SerializeToString,
                 response_deserializer=protos__pb2.FetchCommentsByPost.Response.FromString,
                 )
+        self.likePost = channel.unary_unary(
+                '/PostService/likePost',
+                request_serializer=protos__pb2.LikePost.Request.SerializeToString,
+                response_deserializer=protos__pb2.LikePost.Response.FromString,
+                )
+        self.unlikePost = channel.unary_unary(
+                '/PostService/unlikePost',
+                request_serializer=protos__pb2.UnlikePost.Request.SerializeToString,
+                response_deserializer=protos__pb2.UnlikePost.Response.FromString,
+                )
 
 
 class PostServiceServicer(object):
@@ -87,6 +97,18 @@ class PostServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def likePost(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def unlikePost(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_PostServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -119,6 +141,16 @@ def add_PostServiceServicer_to_server(servicer, server):
                     servicer.fetchComments,
                     request_deserializer=protos__pb2.FetchCommentsByPost.Request.FromString,
                     response_serializer=protos__pb2.FetchCommentsByPost.Response.SerializeToString,
+            ),
+            'likePost': grpc.unary_unary_rpc_method_handler(
+                    servicer.likePost,
+                    request_deserializer=protos__pb2.LikePost.Request.FromString,
+                    response_serializer=protos__pb2.LikePost.Response.SerializeToString,
+            ),
+            'unlikePost': grpc.unary_unary_rpc_method_handler(
+                    servicer.unlikePost,
+                    request_deserializer=protos__pb2.UnlikePost.Request.FromString,
+                    response_serializer=protos__pb2.UnlikePost.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -230,5 +262,39 @@ class PostService(object):
         return grpc.experimental.unary_unary(request, target, '/PostService/fetchComments',
             protos__pb2.FetchCommentsByPost.Request.SerializeToString,
             protos__pb2.FetchCommentsByPost.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def likePost(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PostService/likePost',
+            protos__pb2.LikePost.Request.SerializeToString,
+            protos__pb2.LikePost.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def unlikePost(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PostService/unlikePost',
+            protos__pb2.UnlikePost.Request.SerializeToString,
+            protos__pb2.UnlikePost.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

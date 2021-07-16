@@ -17,19 +17,25 @@ class PostServices(protos_pb2_grpc.PostServiceServicer):
         response = protos_pb2.UploadPost.Response()
         response.success = False
         print(request.picture_blob)
-        response.success = database.savePost(request.title, request.content, request.picture_blob, request.id)
+        response.success = database.savePost(request.title, request.content, request.picture_blob, request.id,
+                                             request.timestamp)
 
         return response
 
     def fetchPostDetails(self, request, context):
+        print("hey")
         response = protos_pb2.FetchPostDetails.Response()
         response.success = False
         response.title = database.fetchSinglePost(request.post_id)["title"]
         response.content = database.fetchSinglePost(request.post_id)["content"]
         response.pictureBlob = bytes(database.fetchSinglePost(request.post_id)["picture_blob"])
+        userId = database.fetchSinglePost(request.post_id)["user_id"]
+        response.creator_name = database.getUserById(userId)["name"]
+        response.creator_photoUrl = database.getUserById(userId)["photo_url"]
+        response.numberOfLikes = database.fetchSinglePost(request.post_id)["number_likes"]
+        response.isLiked = database.isPostLikedByMe(request.post_id, request.user_id)
 
-        print(response.title)
-        print(response.content)
+        print("post is liked", response.isLiked)
 
         response.success = True
 
@@ -40,10 +46,13 @@ class PostServices(protos_pb2_grpc.PostServiceServicer):
         response.success = False
 
         for row in database.fetchPostsByPage(request.pageNumber, 15):
+            userId = row["user_id"]
             response.id.append(row["id"])
             response.title.append(row["title"])
             response.content.append(row["content"])
             response.pictureBlob.append(bytes(row["picture_blob"]))
+            response.creator_names.append(database.getUserById(userId)["name"])
+            response.creators_photo_url.append(database.getUserById(userId)["photo_url"])
 
         response.success = True
 
@@ -89,6 +98,18 @@ class PostServices(protos_pb2_grpc.PostServiceServicer):
             response.content.append(row["content"])
             response.success = True
 
+        return response
+
+    def likePost(self, request, context):
+        response = protos_pb2.LikePost.Response()
+        response.success = False
+        response.success = database.likePost(request.user_id, request.post_id, request.timestamp)
+        return response
+
+    def unlikePost(self, request, context):
+        response = protos_pb2.UnlikePost.Response()
+        response.success = False
+        response.success = database.unlikePost(request.user_id, request.post_id, request.timestamp)
         return response
 
 

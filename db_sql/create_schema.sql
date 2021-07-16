@@ -21,8 +21,17 @@ create table if not exists "posts"."users"
 
 create table if not exists "posts"."comments"
 (
-    "id" serial primary key,
-    "user_id" integer references "posts"."users"(id),
-    "post_id" integer references "posts"."post"(id),
+    "id"      serial primary key,
+    "user_id" integer references "posts"."users" (id),
+    "post_id" integer references "posts"."post" (id),
     "content" varchar
+);
+
+create table if not exists "posts"."likes"
+(
+    "id"        serial primary key,
+    "timestamp" varchar,
+    "user_id"   integer references "posts"."users" (id),
+    "post_id"   integer references "posts"."post" (id)
 )
+
