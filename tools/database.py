@@ -173,7 +173,7 @@ def incrementLikes(postId):
             print(row["number_likes"])
             likes = int(row["number_likes"])
 
-        cur.execute('update "posts"."post" set "number_likes" = %s where  "id" = %s', [likes + 1, postId])
+        cur.execute('update "posts"."post" set "number_likes" = %s where  "id" = %s;', [likes + 1, postId])
         cur.close()
         return True
     except Exception as e:
@@ -192,7 +192,7 @@ def decrement(postId):
             print(row["number_likes"])
             likes = int(row["number_likes"])
         if likes > 0:
-            cur.execute('update "posts"."post" set "number_likes" = %s where  "id" = %s', [likes - 1, postId])
+            cur.execute('update "posts"."post" set "number_likes" = %s where  "id" = %s;', [likes - 1, postId])
         cur.close()
         return True
     except Exception as e:
@@ -200,13 +200,30 @@ def decrement(postId):
         return False
 
 
-def editPost(userId, postId, newTitile, newContent, newPictureBlob):
-    try:
-        cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+def editPost(userId, postId, newTitle, newContent, newPictureBlob):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
 
-        cur.execute('update "posts"."post" set "title" = %s, "content" = %s, "picture_blob" = %s where  "id" = %s and'
-                    '"user_id" = %s', [newTitile, newContent, newPictureBlob, postId, userId])
+    try:
+        cur.execute('update "posts"."post" set "title" = %s, "content" = %s, "picture_blob" = %s where "id" = %s and'
+                    '"user_id" = %s;', [newTitle, newContent, newPictureBlob, postId, userId])
+        cur.close()
         return True
     except Exception as e:
         print(e)
+        cur.close()
+        return False
+
+
+def deletePost(userId, postId):
+    cur = connect_db().cursor(cursor_factory=psycopg2_extras.DictCursor)
+
+    try:
+        cur.execute('delete  from  "posts"."likes" where "post_id" = %s', [postId])
+        cur.execute('delete  from  "posts"."comments" where "post_id" = %s', [postId])
+        cur.execute('delete from  "posts"."post" where "id" = %s and "user_id" = %s;', [postId, userId])
+        cur.close()
+        return True
+    except Exception as e:
+        print(e)
+        cur.close()
         return False

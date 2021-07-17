@@ -122,6 +122,16 @@ message EditPost{
   }
 
 }
+  message DeletePost{
+    message  Request{
+      int32 user_id = 1;
+      int32 post_id = 2;
+    }
+
+    message Response{
+      bool  success = 1;
+    }
+  }
 
 
 
@@ -137,7 +147,7 @@ service PostService{
   rpc likePost(LikePost.Request) returns (LikePost.Response){}
   rpc unlikePost(UnlikePost.Request) returns (UnlikePost.Response){}
   rpc editPost(EditPost.Request) returns (EditPost.Response){}
-
+  rpc deletePost(DeletePost.Request) returns (DeletePost.Response){}
 
 }
 

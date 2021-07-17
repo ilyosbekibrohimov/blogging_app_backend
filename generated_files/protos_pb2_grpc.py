@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from  generated_files import protos_pb2 as protos__pb2
+import protos_pb2 as protos__pb2
 
 
 class PostServiceStub(object):
@@ -59,6 +59,11 @@ class PostServiceStub(object):
                 '/PostService/editPost',
                 request_serializer=protos__pb2.EditPost.Request.SerializeToString,
                 response_deserializer=protos__pb2.EditPost.Response.FromString,
+                )
+        self.deletePost = channel.unary_unary(
+                '/PostService/deletePost',
+                request_serializer=protos__pb2.DeletePost.Request.SerializeToString,
+                response_deserializer=protos__pb2.DeletePost.Response.FromString,
                 )
 
 
@@ -120,6 +125,12 @@ class PostServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def deletePost(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_PostServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -167,6 +178,11 @@ def add_PostServiceServicer_to_server(servicer, server):
                     servicer.editPost,
                     request_deserializer=protos__pb2.EditPost.Request.FromString,
                     response_serializer=protos__pb2.EditPost.Response.SerializeToString,
+            ),
+            'deletePost': grpc.unary_unary_rpc_method_handler(
+                    servicer.deletePost,
+                    request_deserializer=protos__pb2.DeletePost.Request.FromString,
+                    response_serializer=protos__pb2.DeletePost.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -329,5 +345,22 @@ class PostService(object):
         return grpc.experimental.unary_unary(request, target, '/PostService/editPost',
             protos__pb2.EditPost.Request.SerializeToString,
             protos__pb2.EditPost.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def deletePost(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PostService/deletePost',
+            protos__pb2.DeletePost.Request.SerializeToString,
+            protos__pb2.DeletePost.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
